@@ -27,7 +27,7 @@ Articles.post('/articles', (req, res) =>{
   });
 });
 
-Articles.delete('/articles', (req, res) => {
+Articles.delete('/articles/:id', (req, res) => {
   fs.readdir( __dirname + '/log', (err, files)=>{
     try {
       res.writeHead(200, {'content-type': 'text/html'});
