@@ -2,3 +2,4 @@ npm-debug.log
 .gitignore
 .eslintrc.json
 gulpfile.js
+server.js
