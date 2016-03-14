@@ -19,10 +19,3 @@ YourRouterName.get('/example/:id', function(req, res){
 http.createServer(YourRouterName.route()).listen(3000, function(){
   console.log('listening to port 3000...');
 });
-```
-
-## How to Use
-In command line:
-```
-npm init
-```
