@@ -3,7 +3,7 @@ var Router = module.exports = function(){
   this.routes = {
     'GET': {},
     'POST': {},
-    // 'PATCH': {},
+    'PUT': {},
     'DELETE': {}
   };
 };
@@ -13,6 +13,10 @@ Router.prototype.get = function(route, cb){
 };
 
 Router.prototype.post = function(route, cb){
+  this.routes['POST'][route] = cb;
+};
+
+Router.prototype.PUT = function(route, cb){
   this.routes['POST'][route] = cb;
 };
 
