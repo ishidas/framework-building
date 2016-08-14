@@ -28,7 +28,6 @@ Router.prototype.route = function () {
   return (req, res) => {
     var incomingUrl = req.url.split('/');
     var id = '/'+ incomingUrl[1] + '/:id';
-    // var id2 = '/' + incomingUrl[1];
     var routeFunction;
     if(req.method === 'GET'|| req.method ==='DELETE' && req.url !== id){
       routeFunction = this.routes[req.method][id];
@@ -36,19 +35,18 @@ Router.prototype.route = function () {
       console.log('POST is hit');
       routeFunction = this.routes[req.method][req.url];
     }
-
-    //lazy header function is created here
-    res.lazyHeader = function (type) {
-      if(type.toUpperCase() === 'TEXT'){
-        console.log(type);
-        res.writeHead(200, {'content-type': 'text/html'});
-      }
-      // still working on my lazyHeader for json format
-      // } else if (type.toUpperCase() === 'JSON'){
-      //   console.log('Here is JSON content-type setter: ' + type);
-      //   res.writeHead(200, {'content-type': 'application/json'});
-      // }
-    };
+    lazyHeaderCreater(req, res);
     routeFunction(req, res);
   };
-};
+}; //end of route fn
+
+//lazy header function is created here
+function lazyHeaderCreater (req, res){
+  return res.lazyHeader = function (typeSelect) {
+    if(typeSelect.toUpperCase() === 'TEXT'){
+      res.writeHead(200, {'content-type': 'text/html'});
+    } else if (typeSelect.toUpperCase() === 'JSON'){
+      res.writeHead(200, {'content-type': 'application/json'});
+    }
+  };
+}
