@@ -7,7 +7,7 @@ const debug = require('debug')('http:server');
 
 Articles.get('/articles/:id', (req, res) => {
   res.lazyHeader('json');
-  res.write('Hello World');
+  res.write('{"data": "Hello World"}');
   res.end();
 });
 
